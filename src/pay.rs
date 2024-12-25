@@ -5,11 +5,11 @@ use crate::response::SignData;
 use crate::{debug, sign, util};
 use aes_gcm::aead::{AeadMut, Payload};
 use aes_gcm::{
-    aead::{KeyInit},
+    aead::KeyInit,
     Aes256Gcm,
 };
 use reqwest::header::{HeaderMap, ACCEPT, AUTHORIZATION, CONTENT_TYPE, USER_AGENT};
-use rsa::pkcs8::{DecodePublicKey};
+use rsa::pkcs8::DecodePublicKey;
 use rsa::sha2::{Digest, Sha256};
 use rsa::{Pkcs1v15Sign, RsaPublicKey};
 use uuid::Uuid;
@@ -171,10 +171,6 @@ impl WechatPayTrait for WechatPay {
 }
 
 impl WechatPay {
-    fn with_base_url(mut self, base_url: impl AsRef<str>) -> Self {
-        self.base_url = base_url.as_ref().to_string();
-        self
-    }
     pub fn new<S: AsRef<str>>(
         appid: S,
         mch_id: S,

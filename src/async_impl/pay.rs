@@ -15,10 +15,10 @@ use crate::response::ResponseTrait;
 use crate::response::{CertificateResponse, NativeResponse};
 use reqwest::header::{HeaderMap, REFERER};
 use serde_json::{Map, Value};
-use crate::{debug};
+use crate::debug;
 
 impl WechatPay {
-    pub(crate) async fn pay<P: ParamsTrait, R: ResponseTrait>(
+    pub async fn pay<P: ParamsTrait, R: ResponseTrait>(
         &self,
         method: HttpMethod,
         url: &str,
@@ -53,7 +53,7 @@ impl WechatPay {
             .map(Ok)?
     }
 
-    pub(crate) async fn get_pay<R: ResponseTrait>(&self, url: &str) -> Result<R, PayError> {
+    pub async fn get_pay<R: ResponseTrait>(&self, url: &str) -> Result<R, PayError> {
         let body = "";
         let headers = self.build_header(HttpMethod::GET, url, body)?;
         let client = reqwest::Client::new();
